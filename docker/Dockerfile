@@ -37,6 +37,12 @@ COPY urls.py /opt/nmapdashboard/nmapdashboard/
 COPY tzdata.sh /root/tzdata.sh
 COPY startup.sh /startup.sh
 
+#vulners nmap script
+COPY vulners.nse /usr/share/nmap/scripts/vulners.nse
+COPY http-vulners-regex.nse /usr/share/nmap/scripts/http-vulners-regex.nse
+COPY http-vulners-regex.json /usr/share/nmap/scripts/http-vulners-regex.json
+COPY http-vulners-paths.txt /usr/share/nmap/scripts/http-vulners-paths.txt
+
 RUN cd /opt/nmapdashboard && python3 manage.py migrate
 RUN apt-get autoremove -y
 RUN ln -s /opt/nmapdashboard/nmapreport/token.py /root/token
